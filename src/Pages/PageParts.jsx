@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './PageParts.css'
 import { HeaderSection, SkillsSection, EducationSection, ExperienceSection } from '../components/Sections'
-import { EducationEditor, HeaderEditor, SkillsEditor } from '../components/EditorSections'
+import { EducationEditor, HeaderEditor, SkillsEditor, ExperienceEditor } from '../components/EditorSections'
 
 function ResumePreview({ fields }) {
 
@@ -16,7 +16,7 @@ function ResumePreview({ fields }) {
 
             <EducationSection fields={fields.education} />
 
-            <ExperienceSection />
+            <ExperienceSection fields={fields.experience} />
           </div>
         </div>
 
@@ -33,7 +33,8 @@ function ResumeEditor({ fields, setFields }) {
   const sections = [
     <HeaderEditor fields={fields.header} setFields={setFields} />,
     <SkillsEditor fields={fields.skills} setFields={setFields} />,
-    <EducationEditor fields={fields.education} setFields={setFields} />
+    <EducationEditor fields={fields.education} setFields={setFields} />,
+    <ExperienceEditor fields={fields.experience} setFields={setFields} />
   ];
 
   return (

@@ -127,4 +127,83 @@ function EducationEditor({ fields, setFields }) {
     )
 }
 
-export { HeaderEditor, SkillsEditor, EducationEditor }
+function ExperienceEditor({ fields, setFields }) {
+    const addInput = () => {
+        setFields(prevFields => ({
+            ...prevFields,
+            experience: [
+                ...prevFields.experience,
+                {
+                    legend: "Experience " + (prevFields.experience.length + 1),
+                    id: crypto.randomUUID(),
+                    inputs: {
+                        title: [{
+                            val: "Company/Project",
+                            label: "Company/Project",
+                            type: "text",
+                            placeholder: "Enter a company or project",
+                            required: false,
+                            id: crypto.randomUUID()
+                        }, {
+                            val: new Date(),
+                            label: "Start Date",
+                            type: "date",
+                            required: false,
+                            id: crypto.randomUUID()
+                        }, {
+                            label: "End Date",
+                            type: "date",
+                            required: false,
+                            id: crypto.randomUUID()
+                        }, {
+                            val: "Title",
+                            label: "Title",
+                            type: "text",
+                            placeholder: "Enter your title",
+                            required: false,
+                            id: crypto.randomUUID()
+                        }],
+                        bullets: [{
+                            val: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            label: "Bullet 1",
+                            type: "text",
+                            placeholder: "Describe your job or project duties",
+                            required: false,
+                            id: crypto.randomUUID()
+                        }]
+                    }
+                }
+            ]
+        }));
+    }
+
+    const deleteInput = (field) => {
+        setFields(prevFields => {
+            const newEducation = prevFields.education.filter(f => f.legend !== field.legend);
+
+            // Renumber "Education X" labels, keeping user-entered values untouched
+            return {
+                ...prevFields,
+                education: newEducation.map((edu, index) => ({
+                    ...edu,
+                    legend: `Education ${index + 1}`
+                }))
+            };
+        });
+    };
+
+    return (
+        <>
+            <h2>Experience</h2>
+            <div className="inputs">
+                {fields.map((field) => (
+                    <EditorFieldset field={field} setFields={setFields} section="experience" onDelete={deleteInput} key={field.id} />
+                ))}
+            </div>
+
+            <button className="add" onClick={addInput}>Add Experience +</button>
+        </>
+    )
+}
+
+export { HeaderEditor, SkillsEditor, EducationEditor, ExperienceEditor }

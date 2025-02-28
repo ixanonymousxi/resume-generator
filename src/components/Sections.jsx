@@ -63,14 +63,30 @@ function EducationSection({ fields }) {
     )
 }
 
-function ExperienceSection() {
-    const [count, setCount] = useState(0)
-
+function ExperienceSection({ fields }) {
     return (
         <>
             <div className="experience section">
                 <h3>Experience</h3>
                 <ul>
+                    {fields.map((field) => (
+                        <li key={field.id}>
+                            <h4>
+                                {field.inputs.title[0].val}
+                                <span>&nbsp;/&nbsp;
+                                    {new Date(field.inputs.title[1].val).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
+                                    {field.inputs.title[2].val && ` - ${new Date(field.inputs.title[2].val).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}`}
+                                    &nbsp;/&nbsp; {field.inputs.title[3].val}
+                                </span>
+                            </h4>
+                            <ul className="bullet-list">
+                                {field.inputs.bullets.map((bullet) => (
+                                    <li key={bullet.id}>{bullet.val}</li>
+                                ))}
+                            </ul>
+                        </li>
+                    ))}
+                {/*
                     <li>
                         <h4>Company 1 <span>&nbsp;/&nbsp; Jan 2010 -  Jan 2025 &nbsp;/&nbsp; Title</span></h4>
                         <ul className="bullet-list">
@@ -107,6 +123,7 @@ function ExperienceSection() {
                             <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
                         </ul>
                     </li>
+                    */}
                 </ul>
             </div>
         </>

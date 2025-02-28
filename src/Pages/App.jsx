@@ -97,8 +97,7 @@ function App() {
         required: false,
         id: crypto.randomUUID()
       }],
-    education: [
-      {
+    education: [{
         legend: "Education 1",
         id: crypto.randomUUID(),
         inputs: [{
@@ -148,7 +147,45 @@ function App() {
         }]
       }
     ],
-    experience: []
+    experience: [{
+      legend: "Experience 1",
+      id: crypto.randomUUID(),
+      inputs: {
+        title: [{
+          val: "Company/Project",
+          label: "Company/Project",
+          type: "text",
+          placeholder: "Enter a company or project",
+          required: false,
+          id: crypto.randomUUID()
+        }, {
+            val: new Date(),
+            label: "Start Date",
+            type: "date",
+            required: false,
+            id: crypto.randomUUID()
+          }, {
+            label: "End Date",
+            type: "date",
+            required: false,
+            id: crypto.randomUUID()
+          }, {
+            val: "Title",
+            label: "Title",
+            type: "text",
+            placeholder: "Enter your title",
+            required: false,
+            id: crypto.randomUUID()
+          }],
+        bullets:[{
+          val: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          label: "Bullet 1",
+          type: "text",
+          placeholder: "Describe your job or project duties",
+          required: false,
+          id: crypto.randomUUID()
+        }]}
+    }]
   });
 
   return (

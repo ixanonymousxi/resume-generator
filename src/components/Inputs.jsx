@@ -52,16 +52,45 @@ function EditorFieldset({ field, setFields, section, onDelete }) {
             <fieldset>
                 <legend>{field.legend}</legend>
 
-                {field.inputs.map((input, i) => {
-                    const id = input.label.toLowerCase().split(" ").join("-");
-                    return(
-                        <div className="input-wrapper" key={input.id}>
-                            <label htmlFor={id}>{input.label}</label>
-                            <input id={id} type={input.type} placeholder={input.placeholder} value={input.val} required={input.required} onChange={updateInput} />
-                            {i === field.inputs.length - 1 && <button className="delete" onClick={() => { onDelete(field) }}>&#128465;</button>}
-                        </div>
-                    )
-                })}
+                {field.inputs.bullets ? (
+                    <>
+                        {field.inputs.title.map((input, i) => {
+                            const id = input.label.toLowerCase().split(" ").join("-");
+                            return (
+                                <div className="input-wrapper" key={input.id}>
+                                    <label htmlFor={id}>{input.label}</label>
+                                    <input id={id} type={input.type} placeholder={input.placeholder} value={input.val} required={input.required} onChange={updateInput} />
+                                </div>
+                            );
+                        })}
+
+                        {field.inputs.bullets.map((bullet,i) => {
+                            const bulletId = bullet.label.toLowerCase().split(" ").join("-");
+                            return (
+                                <div className="input-wrapper" key={bullet.id}>
+                                    <label htmlFor={bulletId}>{bullet.label}</label>
+                                    <input id={bulletId} type={bullet.type} placeholder={bullet.placeholder} value={bullet.val} required={bullet.required} onChange={updateInput} />
+                                    {i === field.inputs.bullets.length - 1 && <button className="delete" onClick={() => { onDelete(field) }}>&#128465;</button>}
+                                </div>
+                            );
+                        })}
+                        
+                        {<button className="add" onClick={() => { onDelete(field) }}>Add Bullet +</button>}
+                        {<button className="delete" onClick={() => { onDelete(field) }}>&#128465;</button>}
+                    </>
+                ) : (
+                    field.inputs.map((input, i) => {
+                        const id = input.label.toLowerCase().split(" ").join("-");
+                        return (
+                            <div className="input-wrapper" key={input.id}>
+                                <label htmlFor={id}>{input.label}</label>
+                                <input id={id} type={input.type} placeholder={input.placeholder} value={input.val} required={input.required} onChange={updateInput} />
+                                {i === field.inputs.length - 1 && <button className="delete" onClick={() => { onDelete(field) }}>&#128465;</button>}
+                            </div>
+                        );
+                    })
+                )}
+
             </fieldset>
         </>
     )
