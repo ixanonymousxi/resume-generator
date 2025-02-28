@@ -1,0 +1,160 @@
+/* Editor Side */
+
+.editor{
+  padding: 0 2rem;
+}
+
+.wrapper{
+  background: #79B791;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.wrapper h2{
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: #33473B;
+  background: #ABD1B5;
+  padding: 10px;
+  text-align: center;
+}
+
+/* inputs */
+.inputs{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 450px;
+  overflow: scroll;
+  padding: 2px;
+}
+
+.input-wrapper{
+  display:flex;
+  gap: 4px;
+  flex-wrap:wrap;
+}
+
+label{
+  color: #33473B;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  width:100%;
+}
+
+input:focus-visible{
+  outline:none;
+  outline:#272727 solid 2px;
+}
+
+.button-wrapper{
+  margin-top:10px;
+  display:flex;
+  gap: 10px;
+}
+
+.button-wrapper button{
+  background:#693434;
+  color:white;
+}
+
+.button-wrapper button:hover {
+  background: #A44200;
+}
+
+.button-wrapper .save{
+  flex-grow: 1;
+  background:#A44200;
+}
+
+.button-wrapper .save:hover {
+  background: #693434;
+}
+
+.add{
+  background: #33473B;
+  color: #A6B4A9;
+  padding: 9px;
+  margin-top: 10px;
+  border: #8D8D8D 2px solid;
+}
+
+.add:hover {
+  background: #A6B4A9;
+  color: #33473B;
+  border: #33473B 2px solid;
+}
+
+fieldset{
+  color: #33473B;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  border: #33473B 1px solid;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 20px 20px 20px;
+}
+
+legend{
+  color: #33473B;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+/* Preview side */
+.resume{
+  background: white;
+  color: black;
+  height: 670px;
+  font-size: 10px;
+  padding: 2rem 3rem;
+}
+
+.overflow-wrapper{
+  overflow: hidden;
+  height: 98%;
+}
+
+/* Sections */
+
+h4 span {
+  font-style: italic;
+  font-weight: normal;
+}
+
+/* Header Preview Section */
+
+h1 span{
+  font-weight: normal;
+  font-style: italic;
+}
+
+.header ul{
+  display: flex;
+  column-gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Skills Preview Section */
+
+.skills ul {
+  display: flex;
+  column-gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+/* Experience Preview Section */
+
+.experience ul li{
+  margin: 10px 0;
+}
+

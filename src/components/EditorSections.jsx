@@ -1,0 +1,130 @@
+import { useState } from 'react'
+import { EditorInput, EditorFieldset } from './inputs'
+import '../Pages/PageParts.css'
+
+function HeaderEditor({ fields, setFields }) {
+    return (
+        <>
+            <h2>Profile</h2>
+            {fields.map((field) => (
+                <EditorInput field={field} setFields={setFields} section="header" key={field.id}/>
+            ))}
+        </>
+    )
+}
+
+
+function SkillsEditor({ fields, setFields }) {
+    const addInput = () => {
+        setFields(prevFields => ({
+            ...prevFields,
+            skills: [
+                ...prevFields.skills,
+                {
+                    val: "Skill " + (prevFields.skills.length + 1),
+                    label: "Skill " + (prevFields.skills.length + 1),
+                    type: "text",
+                    placeholder: "Enter a skill",
+                    required: false,
+                    id: crypto.randomUUID()
+                }
+            ]
+        }));
+    }
+
+    const deleteInput = (field) => {
+        setFields(prevFields => {
+            const newSkills = prevFields.skills.filter(f => f.label !== field.label);
+
+            // Renumber "Skill X" labels, keeping user-entered values untouched
+            return {
+                ...prevFields,
+                skills: newSkills.map((skill, index) => ({
+                    ...skill,
+                    label: skill.label.startsWith("Skill ") ? `Skill ${index + 1}` : skill.label,
+                    val: skill.val.startsWith("Skill ") ? `Skill ${index + 1}` : skill.val
+                }))
+            };
+        });
+    };
+
+    return (
+        <>
+            <h2>Skills</h2>
+            <div className="inputs">
+                {fields.map((field) => (
+                    <EditorInput field={field} setFields={setFields} section="skills" onDelete={deleteInput} key={field.id} />
+                ))}
+            </div>
+
+            <button className="add" onClick={addInput}>Add Skill +</button>
+        </>
+    )
+}
+
+
+function EducationEditor({ fields, setFields }) {
+    const addInput = () => {
+        setFields(prevFields => ({
+            ...prevFields,
+            education: [
+                ...prevFields.education,
+                {
+                    legend: "Education " + (prevFields.education.length + 1),
+                    id: crypto.randomUUID(),
+                    inputs: [{
+                        val: "Institution",
+                        label: "Institution",
+                        type: "text",
+                        placeholder: "Enter an institution",
+                        required: false,
+                        id: crypto.randomUUID()
+                    }, {
+                        val: "Degree Example",
+                        label: "Degree/Certification",
+                        type: "text",
+                        placeholder: "Enter a degree or certification",
+                        required: false,
+                        id: crypto.randomUUID()
+                    }, {
+                        val: new Date(),
+                        label: "Date Acquired",
+                        type: "date",
+                        required: false,
+                        id: crypto.randomUUID()
+                    }]
+                }
+            ]
+        }));
+    }
+
+    const deleteInput = (field) => {
+        setFields(prevFields => {
+            const newEducation  = prevFields.education.filter(f => f.legend !== field.legend);
+
+            // Renumber "Education X" labels, keeping user-entered values untouched
+            return {
+                ...prevFields,
+                education: newEducation.map((edu, index) => ({
+                    ...edu,
+                    legend: `Education ${index + 1}`
+                }))
+            };
+        });
+    };
+
+    return (
+        <>
+            <h2>Education</h2>
+            <div className="inputs">
+                {fields.map((field) => (
+                    <EditorFieldset field={field} setFields={setFields} section="education" onDelete={deleteInput} key={field.id} />
+                ))}
+            </div>
+
+            <button className="add" onClick={addInput}>Add Education +</button>
+        </>
+    )
+}
+
+export { HeaderEditor, SkillsEditor, EducationEditor }

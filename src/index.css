@@ -1,0 +1,80 @@
+*{
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+  font-size: 15px;
+
+  /*color-scheme: light dark;*/
+  /*color: rgba(255, 255, 255, 0.87);*/
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root{
+  display: grid;
+  grid-template-columns: 1fr 518px;
+  padding: 3rem;
+}
+
+ul{
+  padding:0;
+  margin:0;
+  list-style-type:none;
+}
+
+h1, h2, h3, h4, h5, h6{
+  margin: 0;
+}
+
+h3{
+  border-bottom: solid 2px black;
+  margin-bottom: 10px;
+}
+
+p{
+  margin:0;
+}
+
+input{
+  padding:7px;
+  flex-grow: 1;
+}
+
+button{
+  padding: 6px 15px;
+  cursor:pointer;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  outline: none;
+  border: none;
+}
+
+.bullet-list {
+  list-style-type: disc;
+  padding-left: 1rem;
+}
+
+.section{
+  margin:10px 0;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
