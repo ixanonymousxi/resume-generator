@@ -165,6 +165,7 @@ function App() {
             required: false,
             id: crypto.randomUUID()
           }, {
+            val: new Date(),
             label: "End Date",
             type: "date",
             required: false,

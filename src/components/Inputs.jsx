@@ -24,26 +24,47 @@ function EditorInput({ field, setFields, section, onDelete }) {
     )
 }
 
-function EditorFieldset({ field, setFields, section, onDelete }) {
+function EditorFieldset({ field, setFields, section, onDelete, onAdd }) {
 
     const updateInput = (e) => {
         const { id, value } = e.target; // Extract input id and new value
 
-        setFields(prevFields => ({
-            ...prevFields,
-            [section]: prevFields[section].map(f =>
-                f.legend === field.legend // Find the correct fieldset
-                    ? {
-                        ...f,
-                        inputs: f.inputs.map(input =>
-                            input.label.toLowerCase().split(" ").join("-") === id
-                                ? { ...input, val: value } // Update the correct input
-                                : input
-                        )
-                    }
-                    : f
-            )
-        }));
+        if(section === "education"){
+            setFields(prevFields => ({
+                ...prevFields,
+                [section]: prevFields[section].map(f =>
+                    f.legend === field.legend // Find the correct fieldset
+                        ? {
+                            ...f,
+                            inputs: f.inputs.map(input =>
+                                input.label.toLowerCase().split(" ").join("-") === id
+                                    ? { ...input, val: value } // Update the correct input
+                                    : input
+                            )
+                        }
+                        : f
+                )
+            }));
+        } else{
+            const propName = id.slice(0, 6) === "bullet" ? "bullets" : "title";
+            setFields(prevFields => ({
+                ...prevFields,
+                [section]: prevFields[section].map(f =>
+                    f.legend === field.legend // Find the correct fieldset
+                        ? {
+                            ...f,
+                            inputs: {
+                                ...f.inputs,
+                                [propName]: f.inputs[propName].map(input =>
+                                input.label.toLowerCase().split(" ").join("-") === id
+                                    ? { ...input, val: value } // Update the correct input
+                                    : input
+                            )}
+                        }
+                        : f
+                )
+            }));
+        }
     };
 
 
@@ -70,12 +91,12 @@ function EditorFieldset({ field, setFields, section, onDelete }) {
                                 <div className="input-wrapper" key={bullet.id}>
                                     <label htmlFor={bulletId}>{bullet.label}</label>
                                     <input id={bulletId} type={bullet.type} placeholder={bullet.placeholder} value={bullet.val} required={bullet.required} onChange={updateInput} />
-                                    {i === field.inputs.bullets.length - 1 && <button className="delete" onClick={() => { onDelete(field) }}>&#128465;</button>}
+                                    { field.inputs.bullets.length > 0 && <button className="delete" onClick={() => { onDelete(field, bullet.label) }}>&#128465;</button>}
                                 </div>
                             );
                         })}
                         
-                        {<button className="add" onClick={() => { onDelete(field) }}>Add Bullet +</button>}
+                        {<button className="add" onClick={() => { onAdd("bullet", field) }}>Add Bullet +</button>}
                         {<button className="delete" onClick={() => { onDelete(field) }}>&#128465;</button>}
                     </>
                 ) : (
