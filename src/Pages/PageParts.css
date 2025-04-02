@@ -183,3 +183,29 @@ h1 span{
   margin: 10px 0;
 }
 
+
+
+@media (max-width: 500px) {
+  .editor {
+      padding: 0;
+    }
+  
+  .preview-container{
+    width:290px;
+    grid-row:1;
+  }
+
+  .resume{
+    height: 375px;
+    padding: 1rem 2rem;
+    font-size: 6px;
+  }
+
+  .header ul, .skills ul {
+    column-gap: 4px;
+  }
+
+  .experience ul li {
+    margin: 6px 0;
+  }
+}

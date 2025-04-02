@@ -79,3 +79,17 @@ button{
     background-color: #ffffff;
   }
 }
+
+
+@media (max-width: 500px) {
+  #root {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+      row-gap: 20px;
+    }
+
+  h3 {
+    border-bottom: solid 1px black;
+    margin-bottom: 5px;
+  }
+}
