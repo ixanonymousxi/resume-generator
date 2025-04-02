@@ -6,18 +6,18 @@ import { EducationEditor, HeaderEditor, SkillsEditor, ExperienceEditor } from '.
 function ResumePreview({ fields }) {
   const pageRef = useRef(null); // Create a reference to the "page" div
   const [currentPage, setCurrentPage] = useState(0);
-  const pageHeight = 588;
+  const pageWidth = 518;
   const [maxPages, setMaxPages] = useState(0);
 
   useEffect(() => {
     if (pageRef.current) {
-      pageRef.current.style.transform = `translateY(-${currentPage * pageHeight}px)`;
+      pageRef.current.style.transform = `translateX(-${currentPage * pageWidth}px)`;
     }
   }, [currentPage]); // Runs whenever `currentPage` changes
 
   useEffect(() => {
     if (pageRef.current) {
-      setMaxPages(Math.floor(pageRef.current.offsetHeight / pageHeight));
+      setMaxPages(Math.floor(pageRef.current.scrollWidth / pageWidth));
     }
   }, [fields]); // Runs whenever `fields' changes
 
