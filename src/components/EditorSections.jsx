@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { EditorInput, EditorFieldset } from './inputs'
+import { EditorInput, EditorFieldset } from './EditorInputs'
 import '../Pages/PageParts.css'
 
 function HeaderEditor({ fields, setFields }) {
