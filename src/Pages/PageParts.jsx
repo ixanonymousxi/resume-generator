@@ -9,6 +9,7 @@ function ResumePreview({ fields }) {
   const pageWidth = 518;
   const [maxPages, setMaxPages] = useState(0);
 
+
   useEffect(() => {
     if (pageRef.current) {
       pageRef.current.style.transform = `translateX(-${currentPage * pageWidth}px)`;
