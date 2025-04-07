@@ -27,7 +27,7 @@ function EditorInput({ field, setFields, section, onDelete }) {
 function EditorFieldset({ field, setFields, section, onDelete, onAdd }) {
 
     const updateInput = (e) => {
-        const { id, value } = e.target; // Extract input id and new value
+        const { id, value } = e.target; // Extract input id and new value 
 
         if(section === "education"){
             setFields(prevFields => ({
