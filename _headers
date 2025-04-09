@@ -1,5 +1,24 @@
-/static/*
-  Content-Type: application/javascript
+/secure/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Cache-Control: no-cache, no-store, must-revalidate
 
-/assets/*.js
+/static/*
+  Access-Control-Allow-Origin: *
+  X-Robots-Tag: nosnippet
+  Cache-Control: public, max-age=3600
+
+*.js
   Content-Type: application/javascript
+  Cache-Control: public, max-age=31536000, immutable
+
+*.css
+  Content-Type: text/css
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.ico
+  Cache-Control: public, max-age=86400
+
+https://myproject.pages.dev/*
+  X-Robots-Tag: noindex
